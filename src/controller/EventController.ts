@@ -33,6 +33,14 @@ export class EventController {
             ..._event,
             ...request.body,
         }
+        let data = request.body;
+        if(data.datetime){
+            let _date = new Date(data.datetime);
+            _event.year = _date.getUTCFullYear();
+            _event.month = _date.getUTCMonth();
+            _event.date = _date.getUTCDate();
+            _event.hours = _date.getUTCHours();
+        }
         return this.eventRepository.save(_event);
     }
 
