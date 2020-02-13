@@ -16,14 +16,6 @@ export class EventController {
 
     async save(request: Request, response: Response, next: NextFunction) {
         let data = request.body;
-        // [todo] remove
-        if(data.datetime){
-            let _date = new Date(data.datetime);
-            data.year = _date.getUTCFullYear();
-            data.month = _date.getUTCMonth();
-            data.date = _date.getUTCDate();
-            data.hours = _date.getUTCHours();
-        }
         return this.eventRepository.save(data);
     }
 
@@ -34,13 +26,6 @@ export class EventController {
             ...request.body,
         }
         let data = request.body;
-        if(data.datetime){
-            let _date = new Date(data.datetime);
-            _event.year = _date.getUTCFullYear();
-            _event.month = _date.getUTCMonth();
-            _event.date = _date.getUTCDate();
-            _event.hours = _date.getUTCHours();
-        }
         return this.eventRepository.save(_event);
     }
 
