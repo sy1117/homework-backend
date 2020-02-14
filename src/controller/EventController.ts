@@ -31,7 +31,7 @@ export class EventController {
 
     async remove(request: Request, response: Response, next: NextFunction) {
         let eventToRemove = await this.eventRepository.findOne(request.params.id);
-        await this.eventRepository.remove(eventToRemove);
+        return await this.eventRepository.remove(eventToRemove)
     }
 
     async removeAll(request: Request, response: Response, next: NextFunction) {
